@@ -27,3 +27,29 @@ Backend  : Node.js, Express.js, JWT, Mongoose
 Database : MongoDB
 AI       : OpenAI API
 Tools    : CORS, Morgan, dotenv, Postman/Thunder Client
+```
+
+---
+
+## 🔄 Workflow
+Student      -> Mood logs, AI chatbot, assessments, journaling, resources, forum, appointments
+Counsellor   -> Analytics dashboard, appointment management, forum moderation
+Admin        -> User & resource management
+Volunteer    -> Peer support and moderation
+
+---
+
+📈 Impact
+```bash
++ Early detection of mental health risks
++ Accessible support for students nationwide
++ Reduces stigma through anonymity
++ Enables data-driven action for colleges
+```
+
+## 📚 References
+
+WHO Mental Health Report (2022)
+NIMHANS National Mental Health Survey (2015–16)
+PHQ-9 & GAD-7 official documentation
+Research on digital mental health interventions
