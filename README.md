@@ -32,10 +32,12 @@ Tools    : CORS, Morgan, dotenv, Postman/Thunder Client
 ---
 
 ## 🔄 Workflow
+```bash
 Student      -> Mood logs, AI chatbot, assessments, journaling, resources, forum, appointments
 Counsellor   -> Analytics dashboard, appointment management, forum moderation
 Admin        -> User & resource management
 Volunteer    -> Peer support and moderation
+```
 
 ---
 
