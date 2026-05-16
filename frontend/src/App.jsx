@@ -14,7 +14,7 @@ import Analytics from "./pages/Analytics";
 import ReflectionBox from "./pages/ReflectionBox";
 import Feedback from "./pages/Feedback";
 import Doctor from "./pages/Doctor";
-import EmergencyHelpline from "./pages/EmergencyHelpline";
+import EmergencyHelpline from "./pages/EmergencyHelpLine";
 import WellnessBuddy from "./pages/WellnessBuddy";
 import StressCheck from "./pages/StressCheck";
 import Relaxation from "./pages/Relaxation";
