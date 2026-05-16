@@ -14,7 +14,7 @@ const CounsellorAccount = () => {
     const fetchCounsellor = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:4000/api/counsellors/me", {
+        const res = await axios.get("https://vritti-1.onrender.com/api/counsellors/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setCounsellor(res.data);

@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:4000/api/auth";
+const API_BASE = "https://vritti-1.onrender.com/api/auth";
 
 // Save token in localStorage
 export function setToken(token) {
@@ -24,9 +24,9 @@ export async function apiFetch(url, options = {}) {
     headers["Authorization"] = `Bearer ${token}`;
   }
 
-  console.log("🌐 Fetching:", `http://localhost:4000/api${url}`, headers);
+  console.log("🌐 Fetching:", `https://vritti-1.onrender.com/api${url}`, headers);
 
-  const res = await fetch(`http://localhost:4000/api${url}`, {
+  const res = await fetch(`https://vritti-1.onrender.com/api${url}`, {
     ...options,
     headers,
     credentials: "include"

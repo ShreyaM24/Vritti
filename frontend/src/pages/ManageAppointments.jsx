@@ -18,7 +18,7 @@ const ManageAppointments = () => {
 
   const fetchAppointments = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/api/appointments", {
+      const res = await axios.get("https://vritti-1.onrender.com/api/appointments", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAppointments(res.data);
@@ -29,7 +29,7 @@ const ManageAppointments = () => {
 
   const fetchCounsellors = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/api/counsellors", {
+      const res = await axios.get("https://vritti-1.onrender.com/api/counsellors", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setCounsellors(res.data);
@@ -40,7 +40,7 @@ const ManageAppointments = () => {
 
   const handleAddCounsellor = async () => {
     try {
-      await axios.post("http://localhost:4000/api/counsellors", form, {
+      await axios.post("https://vritti-1.onrender.com/api/counsellors", form, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setShowModal(false);
@@ -54,7 +54,7 @@ const ManageAppointments = () => {
   const updateAppointment = async (id, date, time) => {
     try {
       await axios.put(
-        `http://localhost:4000/api/appointments/${id}`,
+        `https://vritti-1.onrender.com/api/appointments/${id}`,
         { date, time, status: "scheduled" },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -67,7 +67,7 @@ const ManageAppointments = () => {
   const deleteAppointment = async (id) => {
     if (!window.confirm("Are you sure you want to delete this appointment?")) return;
     try {
-      await axios.delete(`http://localhost:4000/api/appointments/${id}`, {
+      await axios.delete(`https://vritti-1.onrender.com/api/appointments/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAppointments((prev) => prev.filter((a) => a._id !== id));

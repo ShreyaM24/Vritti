@@ -4,7 +4,7 @@ import AdminSidebar from "../components/AdminSidebar";
 import Topbar from "../components/Topbar";
 import { useTranslation } from "react-i18next";
 
-const API_URL = "http://localhost:4000/api/forum";
+const API_URL = "https://vritti-1.onrender.com/api/forum";
 
 const CommunityForum = () => {
   const { t } = useTranslation();
