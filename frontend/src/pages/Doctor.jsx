@@ -19,7 +19,7 @@ const Doctor = () => {
 
   const fetchCounsellors = async () => {
     try {
-      const res = await axios.get("https://vritti-1.onrender.com/api/counsellors", {
+      const res = await axios.get("https://vritti-piny.onrender.com/api/counsellors", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setCounsellors(res.data);
@@ -30,7 +30,7 @@ const Doctor = () => {
 
   const fetchAppointments = async () => {
     try {
-      const res = await axios.get("https://vritti-1.onrender.com/api/appointments/my", {
+      const res = await axios.get("https://vritti-piny.onrender.com/api/appointments/my", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAppointments(res.data);
@@ -48,7 +48,7 @@ const Doctor = () => {
 
     try {
       await axios.post(
-        "https://vritti-1.onrender.com/api/appointments",
+        "https://vritti-piny.onrender.com/api/appointments",
         { counsellor: counsellorId, mode: mode.toLowerCase() },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -63,7 +63,7 @@ const Doctor = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to cancel this appointment?")) return;
     try {
-      await axios.delete(`https://vritti-1.onrender.com/api/appointments/${id}`, {
+      await axios.delete(`https://vritti-piny.onrender.com/api/appointments/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setAppointments((prev) => prev.filter((appt) => appt._id !== id));

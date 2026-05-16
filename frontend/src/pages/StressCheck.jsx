@@ -56,7 +56,7 @@ const StressCheck = () => {
 
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("https://vritti-1.onrender.com/api/phq9", {
+      const res = await fetch("https://vritti-piny.onrender.com/api/phq9", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

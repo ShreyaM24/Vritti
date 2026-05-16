@@ -14,7 +14,7 @@ const app = express();
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://vritti-1.onrender.com"
+    "https://vritti-piny.onrender.com"
   ],
   credentials: true
 }));

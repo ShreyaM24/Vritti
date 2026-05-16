@@ -20,7 +20,7 @@ const AdminDashboard = () => {
     const fetchStats = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await fetch("https://vritti-1.onrender.com/api/phq9/stats", {
+        const res = await fetch("https://vritti-piny.onrender.com/api/phq9/stats", {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) throw new Error("Failed to fetch PHQ-9 stats");

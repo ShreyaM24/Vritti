@@ -23,7 +23,7 @@ const WelcomeCard = () => {
       if (!token) return;
 
       try {
-        const res = await fetch("https://vritti-1.onrender.com/api/auth/me", {
+        const res = await fetch("https://vritti-piny.onrender.com/api/auth/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
 

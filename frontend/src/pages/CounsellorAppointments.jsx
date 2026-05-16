@@ -9,7 +9,7 @@ const CounsellorAppointments = () => {
 
   useEffect(() => {
     axios
-      .get("https://vritti-1.onrender.com/api/appointments/counsellor", {
+      .get("https://vritti-piny.onrender.com/api/appointments/counsellor", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setAppointments(res.data))
