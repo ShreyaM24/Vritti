@@ -1,91 +1,112 @@
 import { Routes, Route } from "react-router-dom";
-import LandingPage from "../src/components/LandingPage/LandingPage";
-import Signup from "../src/components/Signup";
-import Login from "../src/components/Login";
-import Dashboard from "../src/pages/Dashboard";
-import Account from "../src/pages/Account";
-import Settings from "../src/pages/Settings";
-import CalendarPage from "../src/pages/CalendarPage";
-import Analytics from "../src/pages/Analytics";
-import ReflectionBox from "./pages/ReflectionBox";  
-import Feedback from "../src/pages/Feedback";
-import Doctor from "../src/pages/Doctor";
-import EmergencyHelpline from "../src/pages/EmergencyHelpline"; 
-import WellnessBuddy from "../src/pages/WellnessBuddy"; 
-import StressCheck from "../src/pages/StressCheck"; 
-import Relaxation from "../src/pages/Relaxation"; 
-import CommunityWall from "../src/pages/CommunityWall";  
-import DailyMoodTracker from "../src/pages/DailyMoodTracker"; 
-import Help from "../src/pages/Help"; 
 
-// ✅ Import Admin Pages
-import AdminDashboard from "../src/pages/AdminDashboard";
-import ManageAppointments from "../src/pages/ManageAppointments";
-import CommunityForum from "../src/pages/CommunityForum"; 
-import ForumModeration from "../src/pages/ForumModeration"; 
+// Components
+import LandingPage from "./components/LandingPage/LandingPage";
+import Signup from "./components/Signup";
+import Login from "./components/Login";
+
+// Main Pages
+import Dashboard from "./pages/Dashboard";
+import Account from "./pages/Account";
+import Settings from "./pages/Settings";
+import CalendarPage from "./pages/CalendarPage";
+import Analytics from "./pages/Analytics";
+import ReflectionBox from "./pages/ReflectionBox";
+import Feedback from "./pages/Feedback";
+import Doctor from "./pages/Doctor";
+import EmergencyHelpline from "./pages/EmergencyHelpline";
+import WellnessBuddy from "./pages/WellnessBuddy";
+import StressCheck from "./pages/StressCheck";
+import Relaxation from "./pages/Relaxation";
+import CommunityWall from "./pages/CommunityWall";
+import DailyMoodTracker from "./pages/DailyMoodTracker";
+import Help from "./pages/Help";
+
+// Admin Pages
+import AdminDashboard from "./pages/AdminDashboard";
+import ManageAppointments from "./pages/ManageAppointments";
+import CommunityForum from "./pages/CommunityForum";
+import ForumModeration from "./pages/ForumModeration";
 import FeedbackInbox from "./pages/FeedbackInbox";
 import AdminAccount from "./pages/AdminAccount";
 
-// ✅ Import Counsellor Pages
-import CounsellorDashboard from "../src/pages/CounsellorDashboard";
+// Counsellor Pages
+import CounsellorDashboard from "./pages/CounsellorDashboard";
 import CounsellorAppointments from "./pages/CounsellorAppointments";
 import CounsellorCommunityWall from "./pages/CounsellorCommunityWall";
 import CounsellorAccount from "./pages/CounsellorAccount";
 
-// ✅ Import Volunteer Pages
-import VolunteerDashboard from "../src/pages/VolunteerDashboard";
-import VolunteerCommunityChat from "../src/pages/VolunteerCommunityChat";
-import VolunteerAccount from "../src/pages/VolunteerAccount";
+// Volunteer Pages
+import VolunteerDashboard from "./pages/VolunteerDashboard";
+import VolunteerCommunityChat from "./pages/VolunteerCommunityChat";
+import VolunteerAccount from "./pages/VolunteerAccount";
 
 function App() {
   return (
     <Routes>
+      {/* Landing */}
       <Route path="/" element={<LandingPage />} />
 
-      {/* Auth Pages */}
+      {/* Auth */}
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
 
-      {/* Main Pages */}
+      {/* User Pages */}
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/account" element={<Account />} />
       <Route path="/settings" element={<Settings />} />
       <Route path="/calendar" element={<CalendarPage />} />
       <Route path="/analytics" element={<Analytics />} />
-
-      {/* Reflection Box */}
       <Route path="/reflection" element={<ReflectionBox />} />
-
-      {/* Other Features */}
       <Route path="/feedback" element={<Feedback />} />
       <Route path="/doctor" element={<Doctor />} />
-      <Route path="/emergency-helpline" element={<EmergencyHelpline />} /> 
-      <Route path="/wellness-buddy" element={<WellnessBuddy />} /> 
-      <Route path="/stress-check" element={<StressCheck />} /> 
-      <Route path="/relaxation" element={<Relaxation />} /> 
-
-      {/* Community & Tracker */}
+      <Route path="/emergency-helpline" element={<EmergencyHelpline />} />
+      <Route path="/wellness-buddy" element={<WellnessBuddy />} />
+      <Route path="/stress-check" element={<StressCheck />} />
+      <Route path="/relaxation" element={<Relaxation />} />
       <Route path="/community-wall" element={<CommunityWall />} />
       <Route path="/daily-mood-tracker" element={<DailyMoodTracker />} />
       <Route path="/help" element={<Help />} />
 
-      {/* ✅ Admin Pages */}
+      {/* Admin */}
       <Route path="/admin-dashboard" element={<AdminDashboard />} />
       <Route path="/manage-appointments" element={<ManageAppointments />} />
       <Route path="/community-forum" element={<CommunityForum />} />
-      <Route path="/feedback-inbox" element={<FeedbackInbox />} /> 
+      <Route path="/forum-moderation" element={<ForumModeration />} />
+      <Route path="/feedback-inbox" element={<FeedbackInbox />} />
       <Route path="/admin-account" element={<AdminAccount />} />
 
-      {/* ✅ Counsellor Pages */}
-      <Route path="/counsellor-dashboard" element={<CounsellorDashboard />} />
-      <Route path="/counsellor-appointments" element={<CounsellorAppointments />} />
-      <Route path="/counsellor-community-wall" element={<CounsellorCommunityWall />} />
-      <Route path="/counsellor-account" element={<CounsellorAccount />} />
+      {/* Counsellor */}
+      <Route
+        path="/counsellor-dashboard"
+        element={<CounsellorDashboard />}
+      />
+      <Route
+        path="/counsellor-appointments"
+        element={<CounsellorAppointments />}
+      />
+      <Route
+        path="/counsellor-community-wall"
+        element={<CounsellorCommunityWall />}
+      />
+      <Route
+        path="/counsellor-account"
+        element={<CounsellorAccount />}
+      />
 
-      {/* ✅ Volunteer Pages */}
-      <Route path="/volunteer-dashboard" element={<VolunteerDashboard />} />
-      <Route path="/volunteer-community-chat" element={<VolunteerCommunityChat />} />
-      <Route path="/volunteer-account" element={<VolunteerAccount />} />
+      {/* Volunteer */}
+      <Route
+        path="/volunteer-dashboard"
+        element={<VolunteerDashboard />}
+      />
+      <Route
+        path="/volunteer-community-chat"
+        element={<VolunteerCommunityChat />}
+      />
+      <Route
+        path="/volunteer-account"
+        element={<VolunteerAccount />}
+      />
     </Routes>
   );
 }
