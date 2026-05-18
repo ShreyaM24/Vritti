@@ -29,8 +29,7 @@ const AdminSidebar = () => {
     { icon: <Calendar size={20} />, label: t("admin.manageAppointments", "Manage Appointments"), path: "/manage-appointments" },
     { icon: <MessageSquare size={20} />, label: t("admin.communityForum", "Community Forum"), path: "/community-forum" },
     { icon: <Inbox size={20} />, label: t("admin.feedbackInbox"), path: "/feedback-inbox" },
-    { icon: <User size={20} />, label: t("admin.myAccount", "My Account"), path: "/admin-account" },
-    { icon: <Settings size={20} />, label: t("admin.settings", "Settings"), path: "/admin-settings" },
+    { icon: <User size={20} />, label: t("admin.myAccount", "My Account"), path: "/admin-account" }
   ];
 
   const bottomMenu = [
