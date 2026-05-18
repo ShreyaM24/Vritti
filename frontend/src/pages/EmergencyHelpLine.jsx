@@ -1,9 +1,8 @@
-// src/pages/EmergencyHelpline.jsx
 import React from "react";
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
 import { motion } from "framer-motion";
-import { Phone, AlertCircle, FileText } from "lucide-react";
+import { AlertCircle, FileText } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 const EmergencyHelpline = () => {
@@ -24,13 +23,10 @@ const EmergencyHelpline = () => {
         {/* Page Content */}
         <div className="flex-1 p-8 overflow-y-auto">
           {/* Heading Section */}
-          <div className="flex items-center justify-between mb-8">
+          <div className="mb-8">
             <h1 className="text-3xl font-bold text-green-900 dark:text-gray-100">
               {t("emergency.heading")}
             </h1>
-            <button className="flex items-center gap-2 bg-red-600 text-white font-bold px-6 py-3 rounded-xl hover:bg-red-700 transition">
-              <Phone size={20} /> {t("emergency.callNow")}
-            </button>
           </div>
 
           {/* Main Grid */}
@@ -55,10 +51,10 @@ const EmergencyHelpline = () => {
                 {t("emergency.nationalHelplines")}
               </h2>
               <ul className="space-y-3 text-lg">
-                <li>▶ {t("emergency.kiran")}</li>
-                <li>▶ {t("emergency.aasra")}</li>
+                <li>▶ {t("emergency.Tele-Manas")}</li>
+                <li>▶ {t("emergency.Psycho-social, First-aid & counselling helpline")}</li>
                 <li>▶ {t("emergency.collegeHotline")}</li>
-                <li>▶ {t("emergency.campusSecurity")}</li>
+                <li>▶ {t("emergency.One Life")}</li>
               </ul>
             </motion.div>
 
@@ -80,10 +76,27 @@ const EmergencyHelpline = () => {
               </h2>
               <ul className="space-y-3">
                 <li className="flex items-center gap-2">
-                  <FileText /> {t("emergency.selfHelpToolkit")}
+                  <FileText />
+                  <a
+                    href="https://www.nimh.nih.gov/health/topics/caring-for-your-mental-health"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
+                    {t("emergency.selfHelpToolkit")}
+                  </a>
                 </li>
+
                 <li className="flex items-center gap-2">
-                  <AlertCircle /> {t("emergency.crisisCopingTips")}
+                  <AlertCircle />
+                  <a
+                    href="https://www.maxhealthcare.in/blogs/mental-health-crisis"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
+                    {t("emergency.crisisCopingTips")}
+                  </a>
                 </li>
               </ul>
             </motion.div>

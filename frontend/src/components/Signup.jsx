@@ -6,7 +6,6 @@ import { register } from "../api";
 
 const Signup = () => {
   const navigate = useNavigate();
-  const [role, setRole] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -24,10 +23,11 @@ const Signup = () => {
     try {
       // Students: username + password only
       // Others: name + email + password
-      const body =
-        role === "student"
-          ? { name: username, password, role }
-          : { name, email, password, role };
+      const body = {
+        name: username,
+        password,
+        role: "student",
+      };
 
       const res = await register(body);
       const data = await res.json();
@@ -83,48 +83,18 @@ const Signup = () => {
           </h2>
 
           <form className="flex flex-col gap-5" onSubmit={handleSignup}>
-            {/* Role */}
-            <select
-              name="role"
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
-              className="w-full mb-6 p-3 rounded-full bg-[#fffaf0] dark:bg-gray-700 border border-[#e6ddc5] dark:border-gray-600"
-              required
-            >
-              <option value="">Select Role</option>
-              <option value="student">Student</option>
-              <option value="counsellor">Counsellor</option>
-              <option value="volunteer">Volunteer</option>
-              <option value="admin">Admin</option>
-            </select>
+            <p className="text-sm text-center text-gray-600 dark:text-gray-400 mb-2">
+              Only students can create accounts directly.
+            </p>
 
             {/* Inputs */}
-            {role === "student" ? (
-              <input
-                name="username"
-                type="text"
-                placeholder="Username"
-                required
-                className="w-full p-3 rounded-full border border-green-900/30 dark:border-gray-600"
-              />
-            ) : (
-              <>
-                <input
-                  name="name"
-                  type="text"
-                  placeholder="Full Name"
-                  required
-                  className="w-full p-3 rounded-full border border-green-900/30 dark:border-gray-600"
-                />
-                <input
-                  name="email"
-                  type="email"
-                  placeholder="Email Address"
-                  required
-                  className="w-full p-3 rounded-full border border-green-900/30 dark:border-gray-600"
-                />
-              </>
-            )}
+            <input
+              name="username"
+              type="text"
+              placeholder="Username"
+              required
+              className="w-full p-3 rounded-full border border-green-900/30 dark:border-gray-600"
+            />
 
             <input
               name="password"
