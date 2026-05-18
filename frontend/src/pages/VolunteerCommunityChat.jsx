@@ -13,12 +13,24 @@ const VolunteerCommunityChat = () => {
   const [newPost, setNewPost] = useState("");
   const [replyText, setReplyText] = useState({});
   const [user, setUser] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(
+    typeof window !== "undefined" ? window.innerWidth >= 1024 : true
+  );
 
   // Load logged-in user
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("user"));
     setUser(userData);
     loadPosts();
+
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setSidebarOpen(true);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const loadPosts = async () => {
@@ -90,28 +102,29 @@ const VolunteerCommunityChat = () => {
   };
 
   return (
-    <div className="flex h-screen bg-[#fdf6e3] dark:bg-gray-900">
+    <div className="flex h-screen bg-[#fdf6e3] dark:bg-gray-900 overflow-hidden">
       {/* Sidebar */}
-      <div className="fixed top-0 left-0 h-full z-50">
-        <Sidebar />
-      </div>
+      <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col ml-64">
+      <div className="flex-1 flex flex-col lg:ml-64">
         {/* Topbar */}
         <div className="sticky top-0 z-20 bg-[#fdf6e3] dark:bg-gray-800 shadow">
-          <Topbar />
+          <Topbar
+            showMenu={true}
+            onMenuClick={() => setSidebarOpen(true)}
+          />
         </div>
 
         {/* Page content */}
-        <div className="flex-1 p-6 gap-6 overflow-y-auto">
+        <div className="flex-1 p-4 sm:p-6 gap-6 overflow-y-auto">
           {/* Header */}
           <h1 className="text-2xl font-bold text-green-900 dark:text-white">
             {t("communityWall.title", "Community Wall")}
           </h1>
 
           {/* New Post Input */}
-          <div className="flex gap-2 mb-4">
+          <div className="flex flex-col sm:flex-row gap-2 mb-4">
             <input
               type="text"
               value={newPost}
@@ -124,7 +137,7 @@ const VolunteerCommunityChat = () => {
             />
             <button
               onClick={handlePost}
-              className="bg-green-900 text-white px-4 py-2 rounded-lg hover:bg-green-800 flex items-center gap-2 dark:bg-green-700 dark:hover:bg-green-600"
+              className="w-full sm:w-auto bg-green-900 text-white px-4 py-2 rounded-lg hover:bg-green-800 flex items-center justify-center gap-2 dark:bg-green-700 dark:hover:bg-green-600"
             >
               <Send size={16} /> {t("communityWall.postBtn", "Post")}
             </button>
@@ -205,7 +218,7 @@ const VolunteerCommunityChat = () => {
                   </div>
 
                   {/* Reply Input */}
-                  <div className="flex gap-2 mt-3">
+                  <div className="flex flex-col sm:flex-row gap-2 mt-3">
                     <input
                       type="text"
                       value={replyText[post._id] || ""}
@@ -220,7 +233,7 @@ const VolunteerCommunityChat = () => {
                     />
                     <button
                       onClick={() => handleReply(post._id)}
-                      className="bg-green-900 text-white px-3 py-1 rounded-lg hover:bg-green-800 dark:bg-green-700 dark:hover:bg-green-600"
+                      className="w-full sm:w-auto bg-green-900 text-white px-3 py-2 rounded-lg hover:bg-green-800 dark:bg-green-700 dark:hover:bg-green-600"
                     >
                       <Send size={14} />
                     </button>

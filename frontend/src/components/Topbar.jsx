@@ -26,7 +26,7 @@ const Topbar = ({ title, showMenu, onMenuClick }) => {
       transition={{ type: "spring", stiffness: 70, damping: 15 }}
       className="flex items-center justify-between p-4 
                  bg-[#f7f6d5] dark:bg-gray-950 
-                 shadow-md rounded-tr-2xl rounded-tl-2xl ml-[1px] gap-4 transition-colors duration-300"
+                 shadow-md rounded-tr-2xl rounded-tl-2xl gap-4 transition-colors duration-300"
     >
       <div className="flex items-center gap-3">
         {showMenu && (
