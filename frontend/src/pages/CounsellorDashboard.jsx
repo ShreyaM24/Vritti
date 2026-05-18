@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import CounsellorSidebar from "../components/CounsellorSidebar";
 import Topbar from "../components/Topbar";
-import { PieChart, Pie, Cell, Tooltip } from "recharts";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 
 const COLORS = {
   Minimal: "#22c55e",            // green
@@ -14,6 +14,7 @@ const COLORS = {
 
 const CounsellorDashboard = () => {
   const { t } = useTranslation();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [stats, setStats] = useState([]);
 
   // ✅ Fetch PHQ-9 stats (same as admin)
@@ -50,21 +51,19 @@ const CounsellorDashboard = () => {
   const month = today.toLocaleString("default", { month: "long" });
 
   return (
-    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-950">
+    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-950 overflow-x-hidden">
       {/* Sidebar */}
-      <div className="fixed top-0 left-0 h-full w-64">
-        <CounsellorSidebar />
-      </div>
+      <CounsellorSidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
 
       {/* Main Section */}
-      <div className="ml-64 flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col lg:ml-64 overflow-y-auto h-screen">
         {/* Topbar */}
         <div className="sticky top-0 z-20 bg-[#fdf6e3] dark:bg-gray-900 shadow">
-          <Topbar />
+          <Topbar showMenu onMenuClick={() => setSidebarOpen((prev) => !prev)} />
         </div>
 
         {/* Dashboard Content */}
-        <div className="p-8 space-y-8">
+        <div className="pt-20 lg:pt-6 p-4 sm:p-6 lg:p-8 space-y-8">
           {/* Welcome */}
           <h1 className="text-3xl font-bold text-green-900 dark:text-white mb-8">
             {t("welcomeMessage", { name: "MR Psychologist" })}
@@ -98,32 +97,36 @@ const CounsellorDashboard = () => {
           {/* Stress Levels PieChart (from AdminDashboard) */}
           <div className="bg-green-900 dark:bg-green-800 text-white p-6 rounded-2xl shadow-lg">
             <h2 className="text-xl font-bold mb-4 dark:text-white">Students' Stress Levels</h2>
-            <div className="flex flex-col lg:flex-row items-center justify-between">
-              <PieChart width={350} height={350}>
-                <Pie
-                  data={stats}
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={120}
-                  dataKey="value"
-                  label
-                >
-                  {stats.map((entry, index) => (
-                    <Cell
-                      key={`cell-${index}`}
-                      fill={COLORS[entry.name] || "#999"}
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+              <div className="w-full lg:w-1/2 min-w-0 h-[320px]">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={stats}
+                      cx="50%"
+                      cy="50%"
+                      outerRadius={120}
+                      dataKey="value"
+                      label
+                    >
+                      {stats.map((entry, index) => (
+                        <Cell
+                          key={`cell-${index}`}
+                          fill={COLORS[entry.name] || "#999"}
+                        />
+                      ))}
+                    </Pie>
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: "#1f2937",
+                        color: "#fff",
+                        borderRadius: "8px",
+                        border: "none",
+                      }}
                     />
-                  ))}
-                </Pie>
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "#1f2937",
-                    color: "#fff",
-                    borderRadius: "8px",
-                    border: "none",
-                  }}
-                />
-              </PieChart>
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
 
               {/* Legend */}
               <div className="mt-6 lg:mt-0 lg:ml-10 space-y-2 text-gray-200 dark:text-white">

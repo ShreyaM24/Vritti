@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import VolunteerSidebar from "../components/VolunteerSidebar";
 import Topbar from "../components/Topbar";
 
 const VolunteerDashboard = () => {
   const { t } = useTranslation();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const resources = [
     {
@@ -40,19 +41,17 @@ const VolunteerDashboard = () => {
   ];
 
   return (
-    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-900">
+    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-900 overflow-x-hidden">
       {/* Sidebar */}
-      <div className="fixed top-0 left-0 h-full w-64">
-        <VolunteerSidebar />
-      </div>
+      <VolunteerSidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
 
       {/* Main Section */}
-      <div className="ml-64 flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col lg:ml-64 overflow-y-auto h-screen">
         {/* Topbar */}
         <div className="sticky top-0 z-20 bg-[#fdf6e3] dark:bg-gray-800 shadow">
-          <Topbar />
+          <Topbar showMenu onMenuClick={() => setSidebarOpen((prev) => !prev)} />
         </div>
-        <div className="p-8 space-y-8">
+        <div className="pt-20 lg:pt-6 p-4 sm:p-6 lg:p-8 space-y-8">
           {/* 📚 Learning Resources Section */}
           <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg">
             <h2 className="text-2xl font-bold text-green-900 dark:text-white mb-4">
@@ -62,11 +61,11 @@ const VolunteerDashboard = () => {
               Here are some helpful articles, research papers, and videos to
               help you better support students with mental health concerns.
             </p>
-            <ul className="space-y-4">
+            <ul className="grid gap-4 sm:grid-cols-2">
               {resources.map((res, idx) => (
                 <li
                   key={idx}
-                  className="p-4 bg-green-100 dark:bg-gray-700 rounded-lg shadow flex justify-between items-center"
+                  className="p-4 bg-green-100 dark:bg-gray-700 rounded-lg shadow flex flex-col justify-between"
                 >
                   <div>
                     <p className="font-semibold text-green-900 dark:text-white">

@@ -10,6 +10,7 @@ import { apiFetch } from "../api";
 const CounsellorCommunityWall = () => {
   const { t } = useTranslation();
 
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [posts, setPosts] = useState([]);
   const [newPost, setNewPost] = useState("");
   const [replyText, setReplyText] = useState({});
@@ -90,28 +91,32 @@ const CounsellorCommunityWall = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-950">
+    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-950 overflow-x-hidden">
       {/* Sidebar */}
-      <div className="fixed top-0 left-0 h-full w-64 z-50">
-        <CounsellorSidebar />
-      </div>
+      <CounsellorSidebar
+        isOpen={sidebarOpen}
+        setIsOpen={setSidebarOpen}
+      />
 
       {/* Main Content */}
-      <div className="ml-64 flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col lg:ml-64">
         {/* Topbar */}
         <div className="sticky top-0 z-40 bg-[#fdf6e3] dark:bg-gray-900 shadow">
-          <Topbar />
+          <Topbar
+            showMenu={true}
+            onMenuClick={() => setSidebarOpen((prev) => !prev)}
+          />
         </div>
 
         {/* Page Content */}
-        <div className="flex-1 flex flex-col p-6 gap-6 overflow-hidden">
+        <div className="flex-1 flex flex-col p-4 sm:p-6 lg:p-8 gap-6 overflow-hidden pt-20 lg:pt-6">
           {/* Header */}
           <h1 className="text-2xl font-bold text-green-900 dark:text-white">
             {t("communityWall.title", "Community Wall")}
           </h1>
 
           {/* New Post Input */}
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <input
               type="text"
               value={newPost}
@@ -124,7 +129,7 @@ const CounsellorCommunityWall = () => {
             />
             <button
               onClick={handlePost}
-              className="bg-green-900 text-white px-4 py-2 rounded-lg hover:bg-green-800 flex items-center gap-2 dark:bg-green-700 dark:hover:bg-green-600"
+              className="w-full sm:w-auto bg-green-900 text-white px-4 py-3 rounded-lg hover:bg-green-800 flex items-center justify-center gap-2 dark:bg-green-700 dark:hover:bg-green-600"
             >
               <Send size={16} /> {t("communityWall.postBtn", "Post")}
             </button>
@@ -141,7 +146,7 @@ const CounsellorCommunityWall = () => {
                   className="p-4 rounded-xl shadow-md border bg-white dark:bg-gray-800 border-green-200 dark:border-gray-700"
                 >
                   {/* Post Header */}
-                  <div className="flex justify-between items-center mb-2">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-2">
                     <div className="flex items-center gap-2">
                       <span className="text-xl">{post.avatar}</span>
                       <span className="text-sm font-semibold text-green-900 dark:text-white">
@@ -157,7 +162,7 @@ const CounsellorCommunityWall = () => {
                   <p className="text-green-900 dark:text-white mb-3">{post.text}</p>
 
                   {/* Actions */}
-                  <div className="flex items-center gap-4 text-sm text-green-900 dark:text-white">
+                  <div className="flex flex-wrap items-center gap-3 text-sm text-green-900 dark:text-white">
                     <button
                       onClick={() => handleReact(post._id, "like")}
                       className="flex items-center gap-1 hover:text-green-600"

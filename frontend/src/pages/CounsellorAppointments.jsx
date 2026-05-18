@@ -5,6 +5,7 @@ import axios from "axios";
 
 const CounsellorAppointments = () => {
   const [appointments, setAppointments] = useState([]);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -18,13 +19,17 @@ const CounsellorAppointments = () => {
 
   return (
     <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-950 overflow-x-hidden">
-      <div className="fixed top-0 left-0 h-full w-64">
-        <CounsellorSidebar />
-      </div>
+      <CounsellorSidebar
+        isOpen={sidebarOpen}
+        setIsOpen={setSidebarOpen}
+      />
 
       <div className="flex-1 flex flex-col lg:ml-64 overflow-y-auto h-screen">
         <div className="sticky top-0 z-20 bg-[#fdf6e3] dark:bg-gray-900 shadow">
-          <Topbar />
+          <Topbar
+            showMenu={true}
+            onMenuClick={() => setSidebarOpen((prev) => !prev)}
+          />
         </div>
 
         <div className="pt-20 lg:pt-6 p-4 sm:p-6 lg:p-8">
@@ -38,7 +43,7 @@ const CounsellorAppointments = () => {
                 {appointments.map((appt) => (
                   <li
                     key={appt._id}
-                    className="bg-green-800 dark:bg-green-700 p-4 rounded-lg flex justify-between"
+                    className="bg-green-800 dark:bg-green-700 p-4 rounded-lg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
                   >
                     <div>
                       <p className="font-semibold dark:text-white">{appt.student?.username}</p>
