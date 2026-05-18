@@ -77,21 +77,18 @@ const StressCheck = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-900 transition-colors duration-300">
-      {/* Sidebar */}
-      <aside className="w-64 bg-green-900 flex-shrink-0 h-screen fixed">
-        <Sidebar />
-      </aside>
+    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-900 transition-colors duration-300 overflow-x-hidden">
+      <Sidebar />
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col ml-64 overflow-y-auto h-screen">
+      <div className="flex-1 flex flex-col lg:ml-64 overflow-y-auto h-screen">
         {/* Topbar */}
         <div className="sticky top-0 z-10">
           <Topbar title="Stress Check (PHQ-9)" />
         </div>
 
         {/* Stress Check Section */}
-        <main className="p-6 space-y-6">
+        <main className="pt-20 lg:pt-6 p-4 sm:p-6 space-y-6 max-w-full">
           <h1 className="text-3xl font-bold text-green-900 dark:text-gray-100 mb-6">
             PHQ-9 Questionnaire
           </h1>
@@ -111,7 +108,7 @@ const StressCheck = () => {
                     <button
                       key={opt.key}
                       onClick={() => handleSelect(idx, opt.key)}
-                      className={`px-4 py-2 rounded-xl transition-colors ${
+                      className={`flex-1 min-w-[130px] text-center px-4 py-2 rounded-xl transition-colors ${
                         answers[idx] === opt.key
                           ? "bg-yellow-400 text-black font-semibold"
                           : "bg-green-800 hover:bg-green-700 text-white"

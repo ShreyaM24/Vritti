@@ -63,21 +63,18 @@ const Analytics = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#f7f6d5] text-green-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
-      {/* Sidebar */}
-      <aside className="fixed left-0 top-0 h-full w-64 bg-green-900 text-white dark:bg-gray-800 transition-colors duration-300">
-        <Sidebar />
-      </aside>
+    <div className="flex min-h-screen bg-[#f7f6d5] text-green-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 overflow-x-hidden">
+      <Sidebar />
 
       {/* Main */}
-      <div className="flex-1 flex flex-col ml-64">
+      <div className="flex-1 flex flex-col lg:ml-64 overflow-y-auto h-screen">
         <Topbar title="Analytics" />
 
-        <motion.div className="p-8" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        <motion.div className="pt-20 lg:pt-6 p-4 sm:p-6 lg:p-8" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <h2 className="text-3xl font-bold mb-6 text-center">PHQ-9 Assessment Results</h2>
 
           {phq9.length === 0 ? (
-            <div className="p-8 rounded-xl shadow-md text-center border bg-white dark:bg-gray-800 border-green-200 dark:border-gray-700 transition-colors duration-300">
+            <div className="p-6 sm:p-8 rounded-xl shadow-md text-center border bg-white dark:bg-gray-800 border-green-200 dark:border-gray-700 transition-colors duration-300">
               <p className="text-lg text-gray-800 dark:text-gray-100">
                 No PHQ-9 assessments submitted yet.
               </p>
