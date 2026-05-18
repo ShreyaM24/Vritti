@@ -9,21 +9,18 @@ const WellnessBuddy = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-900 transition-colors duration-300">
-      {/* Sidebar */}
-      <aside className="w-64 bg-green-900 flex-shrink-0 h-screen fixed">
-        <Sidebar />
-      </aside>
+    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-900 transition-colors duration-300 overflow-x-hidden">
+      <Sidebar />
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col ml-64 overflow-y-auto h-screen">
+      <div className="flex-1 flex flex-col lg:ml-64 overflow-y-auto h-screen">
         {/* Topbar */}
         <div className="sticky top-0 z-10">
           <Topbar title={t("wellnessBuddy.title")} />
         </div>
 
         {/* Chat Section */}
-        <main className="p-6 space-y-6">
+        <main className="pt-20 lg:pt-6 p-4 sm:p-6 space-y-6 max-w-full">
           <h1 className="text-3xl font-bold text-green-900 dark:text-gray-100 mb-6">
             {t("wellnessBuddy.title")}
           </h1>

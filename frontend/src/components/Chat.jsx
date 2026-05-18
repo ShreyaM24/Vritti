@@ -103,20 +103,20 @@ export default function Chat() {
       </div>
 
       {/* Input section */}
-      <div className="flex gap-3">
+      <div className="flex flex-col sm:flex-row gap-3">
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
           placeholder="Type your message..."
-          className="flex-1 px-5 py-3 rounded-2xl border border-gray-300 dark:border-gray-700
+          className="w-full px-5 py-3 rounded-2xl border border-gray-300 dark:border-gray-700
                      bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100
                      focus:outline-none focus:ring-2 focus:ring-green-500 transition-all shadow-sm"
         />
         <button
           onClick={sendMessage}
           disabled={loading}
-          className="px-5 py-3 rounded-2xl bg-green-600 hover:bg-green-700 text-white 
+          className="w-full sm:w-auto px-5 py-3 rounded-2xl bg-green-600 hover:bg-green-700 text-white
                      disabled:bg-gray-400 disabled:cursor-not-allowed shadow-md transition-all"
         >
           {loading ? "..." : "Send"}
