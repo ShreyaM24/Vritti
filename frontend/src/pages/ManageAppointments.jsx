@@ -4,6 +4,7 @@ import Topbar from "../components/Topbar";
 import axios from "axios";
 
 const ManageAppointments = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [appointments, setAppointments] = useState([]);
   const [counsellors, setCounsellors] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -80,17 +81,19 @@ const ManageAppointments = () => {
     appointments.filter((appt) => appt.counsellor?._id === counsellorId).length;
 
   return (
-    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-950 transition-colors">
+    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-950 overflow-x-hidden transition-colors">
       {/* Sidebar */}
-      <aside className="fixed top-0 left-0 h-full w-64">
-        <Sidebar />
-      </aside>
+      <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
 
-      <div className="flex-1 flex flex-col ml-64">
+      <div className="flex-1 flex flex-col lg:ml-64 overflow-y-auto h-screen">
         {/* Topbar */}
-        <Topbar title="Manage Appointments" />
+        <Topbar
+          title="Manage Appointments"
+          showMenu
+          onMenuClick={() => setSidebarOpen((prev) => !prev)}
+        />
 
-        <div className="p-8 space-y-12">
+        <div className="pt-20 lg:pt-6 p-4 sm:p-6 lg:p-8 space-y-12">
           {/* Counsellors Section */}
           <div>
             <div className="flex justify-between items-center mb-6">

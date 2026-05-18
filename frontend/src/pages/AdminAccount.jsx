@@ -21,15 +21,14 @@ const AdminAccount = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-900 transition-colors">
+    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-900 overflow-x-hidden transition-colors">
       {/* Sidebar */}
-      <div className="fixed top-0 left-0 h-full w-64">
-        <AdminSidebar />
-      </div>
+      <AdminSidebar />
 
       {/* Main content */}
-      <div className="ml-64 flex-1 p-10 flex justify-center items-center">
-        <div className="w-full max-w-2xl bg-gray-800 dark:bg-gray-800 rounded-2xl shadow-lg p-8">
+      <div className="flex-1 flex flex-col lg:ml-64 overflow-y-auto h-screen">
+        <div className="pt-20 lg:pt-6 p-4 sm:p-6 lg:p-10 flex justify-center items-center">
+          <div className="w-full max-w-2xl bg-gray-800 dark:bg-gray-800 rounded-2xl shadow-lg p-8">
           <h2 className="text-3xl font-bold text-center mb-8 text-white">
             Account Details
           </h2>
@@ -69,6 +68,7 @@ const AdminAccount = () => {
         </div>
       </div>
     </div>
+  </div>
   );
 };
 

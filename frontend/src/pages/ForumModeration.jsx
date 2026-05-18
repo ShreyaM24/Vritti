@@ -1,11 +1,12 @@
 // src/pages/ForumModeration.jsx
-import React from "react";
+import React, { useState } from "react";
 import AdminSidebar from "../components/AdminSidebar";
 import Topbar from "../components/Topbar";
 import { useTranslation } from "react-i18next";
 
 const ForumModeration = () => {
   const { t } = useTranslation();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Dummy reported posts
   const reports = [
@@ -26,21 +27,19 @@ const ForumModeration = () => {
   ];
 
   return (
-    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-900 transition-colors">
+    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-900 overflow-x-hidden transition-colors">
       {/* Sidebar */}
-      <div className="fixed top-0 left-0 h-full w-64">
-        <AdminSidebar />
-      </div>
+      <AdminSidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
 
       {/* Main Content */}
-      <div className="ml-64 flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col lg:ml-64 overflow-y-auto h-screen">
         {/* Topbar */}
         <div className="sticky top-0 z-20 bg-[#fdf6e3] dark:bg-gray-800 shadow transition-colors">
-          <Topbar />
+          <Topbar showMenu onMenuClick={() => setSidebarOpen((prev) => !prev)} />
         </div>
 
         {/* Page Content */}
-        <div className="p-8">
+        <div className="pt-20 lg:pt-6 p-4 sm:p-6 lg:p-8">
           {/* Header */}
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-3xl font-bold text-green-900 dark:text-green-100 transition-colors">
