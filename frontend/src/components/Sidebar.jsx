@@ -1,4 +1,3 @@
-// src/components/Sidebar.jsx
 import React from "react";
 import {
   LayoutDashboard,
@@ -22,18 +21,54 @@ const Sidebar = () => {
   const { t } = useTranslation();
 
   const menuItems = [
-    { icon: <LayoutDashboard size={20} />, label: t("sidebar.dashboard"), path: "/dashboard" },
-    { icon: <BarChart3 size={20} />, label: t("sidebar.analytics"), path: "/analytics" },
-    { icon: <Calendar size={20} />, label: t("sidebar.calendar"), path: "/calendar" },
-    { icon: <MessageSquare size={20} />, label: t("sidebar.feedback"), path: "/feedback" },
-    { icon: <Settings size={20} />, label: t("sidebar.settings"), path: "/settings" },
-    { icon: <Users size={20} />, label: t("sidebar.psychologist_connect"), path: "/doctor" },
-    { icon: <PhoneCall size={20} />, label: t("sidebar.emergency_helpline"), path: "/emergency-helpline" },
+    {
+      icon: <LayoutDashboard size={20} />,
+      label: t("sidebar.dashboard"),
+      path: "/dashboard",
+    },
+    {
+      icon: <BarChart3 size={20} />,
+      label: t("sidebar.analytics"),
+      path: "/analytics",
+    },
+    {
+      icon: <Calendar size={20} />,
+      label: t("sidebar.calendar"),
+      path: "/calendar",
+    },
+    {
+      icon: <MessageSquare size={20} />,
+      label: t("sidebar.feedback"),
+      path: "/feedback",
+    },
+    {
+      icon: <Settings size={20} />,
+      label: t("sidebar.settings"),
+      path: "/settings",
+    },
+    {
+      icon: <Users size={20} />,
+      label: t("sidebar.psychologist_connect"),
+      path: "/doctor",
+    },
+    {
+      icon: <PhoneCall size={20} />,
+      label: t("sidebar.emergency_helpline"),
+      path: "/emergency-helpline",
+    },
   ];
 
   const bottomMenu = [
-    { icon: <User size={20} />, label: t("sidebar.my_account"), path: "/account" },
-    { icon: <LogOut size={20} />, label: t("sidebar.sign_out"), path: "/login" },
+    {
+      icon: <User size={20} />,
+      label: t("sidebar.my_account"),
+      path: "/account",
+    },
+    {
+      icon: <LogOut size={20} />,
+      label: t("sidebar.sign_out"),
+      path: "/login",
+    },
   ];
 
   return (
@@ -45,17 +80,17 @@ const Sidebar = () => {
                  bg-green-900 text-white 
                  dark:bg-gray-950 dark:text-gray-100
                  h-screen flex flex-col justify-between 
-                 p-4 shadow-xl z-50 transition-colors duration-300"
+                 p-5 shadow-xl z-50 transition-colors duration-300"
     >
       {/* Logo */}
-      <div className="flex flex-col items-center mb-6 mt-4">
+      <div className="flex flex-col items-center mb-8 mt-4">
         <h1 className="text-3xl font-serif tracking-widest text-green-300 dark:text-green-400">
           VRITTI
         </h1>
       </div>
 
-      {/* Top Menu items */}
-      <div className="flex-1 flex flex-col justify-start space-y-2">
+      {/* Top Menu Items */}
+      <div className="flex-1 flex flex-col justify-start space-y-4 mt-2">
         {menuItems.map((item, i) => (
           <SidebarItem
             key={i}
@@ -67,26 +102,8 @@ const Sidebar = () => {
         ))}
       </div>
 
-      {/* SOS Button */}
-      <div className="flex justify-center my-6">
-        <motion.button
-          whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(255,0,0,0.5)" }}
-          whileTap={{ scale: 0.95 }}
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ type: "spring", stiffness: 120, damping: 12 }}
-          onClick={() => navigate("/sos")}
-          className="flex items-center gap-2 px-6 py-3 rounded-full 
-                     bg-red-600 text-white font-semibold shadow-lg transition 
-                     hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800"
-        >
-          <PhoneCall size={20} />
-          {t("sidebar.sos")}
-        </motion.button>
-      </div>
-
-      {/* Bottom menu + Help */}
-      <div className="space-y-2 border-t border-gray-800 dark:border-gray-700 pt-4">
+      {/* Bottom Menu */}
+      <div className="space-y-4 border-t border-gray-800 dark:border-gray-700 pt-6 mt-6">
         {bottomMenu.map((item, i) => (
           <SidebarItem
             key={i}
@@ -96,6 +113,7 @@ const Sidebar = () => {
             onClick={() => navigate(item.path)}
           />
         ))}
+
         <SidebarItem
           icon={<HelpCircle size={20} />}
           label={t("sidebar.help")}
@@ -111,12 +129,15 @@ const SidebarItem = ({ icon, label, active, onClick }) => {
   return (
     <motion.div
       onClick={onClick}
-      whileHover={{ scale: 1.05, boxShadow: "0 0 12px rgba(0,0,0,0.4)" }}
-      whileTap={{ scale: 0.95 }}
+      whileHover={{
+        scale: 1.04,
+        boxShadow: "0 0 12px rgba(0,0,0,0.35)",
+      }}
+      whileTap={{ scale: 0.96 }}
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ type: "spring", stiffness: 120, damping: 15 }}
-      className={`flex items-center gap-3 px-4 py-2 rounded-2xl cursor-pointer text-sm transition 
+      className={`flex items-center gap-3 px-4 py-3 rounded-2xl cursor-pointer text-sm font-medium transition-all duration-300
         ${
           active
             ? "bg-green-600 text-white dark:bg-green-500 dark:text-white"
