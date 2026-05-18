@@ -29,17 +29,14 @@ const Relaxation = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-900 transition-colors duration-300">
-      {/* Sidebar */}
-      <aside className="w-64 bg-green-900 fixed h-screen">
-        <Sidebar />
-      </aside>
+    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-900 transition-colors duration-300 overflow-x-hidden">
+      <Sidebar />
 
       {/* Main content */}
-      <div className="flex-1 ml-64 overflow-y-auto h-screen">
+      <div className="flex-1 flex flex-col lg:ml-64 overflow-y-auto h-screen">
         <Topbar title={t("relaxation.title")} />
 
-        <main className="p-6 space-y-10">
+        <main className="pt-20 lg:pt-6 p-4 sm:p-6 space-y-10 max-w-full">
           <h1 className="text-3xl font-bold text-green-900 dark:text-gray-100">
             {t("relaxation.title")}
           </h1>

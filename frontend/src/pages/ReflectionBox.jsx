@@ -95,18 +95,16 @@ const ReflectionBox = () => {
   };
 
   return (
-    <div className="flex h-screen bg-[#fdf6e3] dark:bg-gray-900 transition-colors duration-300">
-      <aside className="w-64 fixed h-screen bg-green-900">
-        <Sidebar />
-      </aside>
+    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-900 transition-colors duration-300 overflow-x-hidden">
+      <Sidebar />
 
-      <div className="flex flex-col flex-1 ml-64">
+      <div className="flex flex-col flex-1 lg:ml-64 overflow-y-auto h-screen">
         <Topbar title={t("reflectionBox.title")} />
 
-        <div className="p-6 overflow-y-auto">
+        <div className="pt-20 lg:pt-6 p-4 sm:p-6 overflow-y-auto">
           {/* Header */}
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold text-green-900 dark:text-gray-100 flex items-center gap-2">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-8">
+            <h2 className="text-3xl font-bold text-green-900 dark:text-gray-100 flex flex-col gap-2">
               {t("reflectionBox.title")}
               <span className="text-green-700 dark:text-gray-300 text-lg font-normal">
                 ({entries.length} {t("reflectionBox.reflections")})
@@ -120,14 +118,14 @@ const ReflectionBox = () => {
                 setEditingEntry(null);
                 setShowForm(true);
               }}
-              className="px-4 py-2 bg-green-900 hover:bg-green-800 text-white rounded-lg flex items-center gap-2 shadow transition"
+              className="w-full md:w-auto px-4 py-2 bg-green-900 hover:bg-green-800 text-white rounded-lg flex justify-center items-center gap-2 shadow transition"
             >
               <Plus size={18} /> {t("reflectionBox.newReflection")}
             </motion.button>
           </div>
 
           {/* Reflections List */}
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
             <AnimatePresence>
               {entries.map((entry, index) => (
                 <motion.div

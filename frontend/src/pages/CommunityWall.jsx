@@ -97,19 +97,19 @@ const CommunityWall = () => {
   };
 
   return (
-    <div className="flex h-screen bg-[#fdf6e3] dark:bg-gray-900">
+    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-900 overflow-x-hidden transition-colors duration-300">
       <Sidebar />
-      <div className="flex flex-col flex-1 ml-64">
+      <div className="flex flex-col flex-1 lg:ml-64 overflow-y-auto h-screen">
         <Topbar />
 
-        <div className="flex-1 flex flex-col p-6 gap-6 overflow-hidden">
+        <div className="pt-20 lg:pt-6 flex-1 flex flex-col p-4 sm:p-6 gap-6 overflow-hidden">
           {/* Header */}
           <h1 className="text-2xl font-bold text-green-900 dark:text-green-100">
             {t("communityWall.title", "Community Wall")}
           </h1>
 
           {/* New Post Input */}
-          <div className="flex gap-2">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
             <input
               type="text"
               value={newPost}
@@ -118,11 +118,11 @@ const CommunityWall = () => {
                 "communityWall.newPostPlaceholder",
                 "Share your thoughts..."
               )}
-              className="flex-1 p-3 border rounded-lg focus:ring-2 focus:ring-green-500 outline-none bg-[#fdf6e3] dark:bg-gray-700 dark:text-white"
+              className="w-full min-w-0 p-3 border rounded-lg focus:ring-2 focus:ring-green-500 outline-none bg-[#fdf6e3] dark:bg-gray-700 dark:text-white"
             />
             <button
               onClick={handlePost}
-              className="bg-green-900 text-white px-4 py-2 rounded-lg hover:bg-green-800 flex items-center gap-2 dark:bg-green-700 dark:hover:bg-green-600"
+              className="w-full sm:w-auto bg-green-900 text-white px-4 py-3 rounded-lg hover:bg-green-800 flex items-center justify-center gap-2 dark:bg-green-700 dark:hover:bg-green-600"
             >
               <Send size={16} /> {t("communityWall.postBtn", "Post")}
             </button>
@@ -207,7 +207,7 @@ const CommunityWall = () => {
                 </div>
 
                 {/* Reply Input */}
-                <div className="flex gap-2 mt-3">
+                <div className="flex flex-col gap-2 mt-3 sm:flex-row sm:items-center">
                   <input
                     type="text"
                     value={replyText[post._id] || ""}
@@ -221,11 +221,11 @@ const CommunityWall = () => {
                       "communityWall.replyPlaceholder",
                       "Write a reply..."
                     )}
-                    className="flex-1 p-2 border rounded-lg bg-[#fdf6e3] dark:bg-gray-700 dark:text-white"
+                    className="w-full min-w-0 p-2 border rounded-lg bg-[#fdf6e3] dark:bg-gray-700 dark:text-white"
                   />
                   <button
                     onClick={() => handleReply(post._id)}
-                    className="bg-green-900 text-white px-3 py-1 rounded-lg hover:bg-green-800 dark:bg-green-700 dark:hover:bg-green-600"
+                    className="w-full sm:w-auto bg-green-900 text-white px-3 py-2 rounded-lg hover:bg-green-800 dark:bg-green-700 dark:hover:bg-green-600"
                   >
                     <Send size={14} />
                   </button>
