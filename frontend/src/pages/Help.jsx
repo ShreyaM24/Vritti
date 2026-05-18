@@ -14,21 +14,18 @@ const Help = () => {
   const faqs = t("help.faqs", { returnObjects: true }) || [];
 
   return (
-    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-900 transition-colors duration-300">
-      {/* Sidebar */}
-      <aside className="fixed left-0 top-0 h-full w-64 bg-green-900 dark:bg-green-800">
-        <Sidebar />
-      </aside>
+    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-900 overflow-x-hidden transition-colors duration-300">
+      <Sidebar />
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col ml-64">
+      <div className="flex-1 flex flex-col lg:ml-64 overflow-y-auto h-screen">
         <Topbar title={t("help.title")} />
 
-        <main className="p-8 space-y-10">
+        <main className="pt-20 lg:pt-6 p-4 sm:p-6 space-y-10 max-w-full">
           {/* Hero Section */}
-          <div className="bg-gradient-to-r from-green-800 to-green-600 text-white rounded-2xl p-10 text-center shadow-lg">
-            <h1 className="text-4xl font-bold mb-3">{t("help.heroTitle")}</h1>
-            <p className="text-lg opacity-90">{t("help.heroText")}</p>
+          <div className="bg-gradient-to-r from-green-800 to-green-600 text-white rounded-2xl p-6 sm:p-10 text-center shadow-lg">
+            <h1 className="text-3xl sm:text-4xl font-bold mb-3">{t("help.heroTitle")}</h1>
+            <p className="text-base sm:text-lg opacity-90">{t("help.heroText")}</p>
           </div>
 
           {/* Quick Start Guide */}

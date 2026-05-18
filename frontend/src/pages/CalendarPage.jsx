@@ -43,16 +43,13 @@ const CalendarPage = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#e9e9d1] dark:bg-gray-900 transition-colors duration-300">
-  {/* Sidebar */}
-  <aside className="w-64 fixed bg-[#05330d] dark:bg-gray-800 h-full text-[#e9e9d1] transition-colors duration-300">
-    <Sidebar />
-  </aside>
+    <div className="flex min-h-screen bg-[#e9e9d1] dark:bg-gray-900 overflow-x-hidden transition-colors duration-300">
+      <Sidebar />
 
-  <div className="ml-64 flex-1 flex flex-col">
-    <Topbar title="Calendar & Reflections" />
+      <div className="flex-1 flex flex-col lg:ml-64 overflow-y-auto h-screen">
+        <Topbar title="Calendar & Reflections" />
 
-    <motion.div className="p-8" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        <motion.div className="pt-20 lg:pt-6 p-4 sm:p-6 lg:p-8" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <h2 className="text-3xl font-bold mb-6 text-[#05330d] dark:text-white text-center">
         Calendar View of Your Entries
       </h2>

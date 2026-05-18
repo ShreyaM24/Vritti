@@ -44,24 +44,16 @@ const Feedback = () => {
   };
 
   return (
-    <div
-      className="
-        flex min-h-screen bg-[#fdf6e3] dark:bg-gray-900
-        transition-colors duration-300
-      "
-    >
-      {/* Sidebar */}
-      <aside className="fixed left-0 top-0 h-full w-64 bg-green-900 dark:bg-green-950">
-        <Sidebar />
-      </aside>
+    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-900 overflow-x-hidden transition-colors duration-300">
+      <Sidebar />
 
       {/* Main Content */}
-      <div className="flex flex-col flex-1 ml-64">
+      <div className="flex flex-col flex-1 lg:ml-64 overflow-y-auto h-screen">
         {/* Topbar */}
         <Topbar title={t("feedback.title")} />
 
         {/* Page Content */}
-        <div className="flex-1 p-10 overflow-y-auto flex flex-col items-center">
+        <div className="pt-20 lg:pt-6 flex-1 p-4 sm:p-6 xl:p-10 overflow-y-auto flex flex-col items-center">
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}

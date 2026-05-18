@@ -17,17 +17,17 @@ const CounsellorAppointments = () => {
   }, [token]);
 
   return (
-    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-950">
+    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-950 overflow-x-hidden">
       <div className="fixed top-0 left-0 h-full w-64">
         <CounsellorSidebar />
       </div>
 
-      <div className="ml-64 flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col lg:ml-64 overflow-y-auto h-screen">
         <div className="sticky top-0 z-20 bg-[#fdf6e3] dark:bg-gray-900 shadow">
           <Topbar />
         </div>
 
-        <div className="p-8">
+        <div className="pt-20 lg:pt-6 p-4 sm:p-6 lg:p-8">
           <h1 className="text-3xl font-bold text-green-900 dark:text-white mb-6">
             My Appointment Schedule
           </h1>

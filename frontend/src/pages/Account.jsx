@@ -29,19 +29,16 @@ const Account = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-900 transition-colors duration-300">
-      {/* Sidebar */}
-      <aside className="fixed left-0 top-0 h-full w-64 bg-green-900 dark:bg-green-800">
-        <Sidebar />
-      </aside>
+    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-900 overflow-x-hidden transition-colors duration-300">
+      <Sidebar />
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col ml-64">
+      <div className="flex-1 flex flex-col lg:ml-64 overflow-y-auto h-screen">
         {/* Topbar */}
         <Topbar title={t("account.myAccount")} />
 
         {/* Account Section */}
-        <div className="flex-1 p-8 overflow-y-auto">
+        <div className="pt-20 lg:pt-6 flex-1 p-4 sm:p-6 xl:p-8 overflow-y-auto">
           <motion.div
             initial={{ opacity: 0, y: 50, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}

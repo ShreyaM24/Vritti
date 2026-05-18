@@ -9,19 +9,16 @@ const EmergencyHelpline = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-900 transition-colors duration-300">
-      {/* Sidebar */}
-      <aside className="fixed top-0 left-0 h-full w-64 bg-green-900 dark:bg-green-800">
-        <Sidebar />
-      </aside>
+    <div className="flex min-h-screen bg-[#fdf6e3] dark:bg-gray-900 overflow-x-hidden transition-colors duration-300">
+      <Sidebar />
 
       {/* Main Content */}
-      <div className="flex flex-col flex-1 ml-64">
+      <div className="flex flex-col flex-1 lg:ml-64 overflow-y-auto h-screen">
         {/* Topbar */}
         <Topbar title={t("emergency.title")} />
 
         {/* Page Content */}
-        <div className="flex-1 p-8 overflow-y-auto">
+        <div className="pt-20 lg:pt-6 flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
           {/* Heading Section */}
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-green-900 dark:text-gray-100">
