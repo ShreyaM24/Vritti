@@ -6,12 +6,14 @@ import { login, setToken } from "../api";
 
 const Login = ({ onLogin }) => {
   const navigate = useNavigate();
+
   const [role, setRole] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
     setLoading(true);
     setError(null);
 
@@ -20,7 +22,7 @@ const Login = ({ onLogin }) => {
     const password = e.target.password?.value?.trim();
 
     try {
-      // Build body correctly
+      // Build request body
       const body =
         role === "student"
           ? { username, password }
@@ -29,31 +31,47 @@ const Login = ({ onLogin }) => {
       const res = await login(body);
       const data = await res.json();
 
-      if (!res.ok) throw new Error(data.message || "Login failed");
+      if (!res.ok) {
+        throw new Error(data.message || "Login failed");
+      }
 
+      // Save token
       if (data.token) {
         setToken(data.token);
-        // Save username in localStorage for WelcomeCard
-        localStorage.setItem("username", data.user.name);
+      }
 
-        if (onLogin) onLogin();
+      // Save full user object
+      localStorage.setItem("user", JSON.stringify(data.user));
 
+      // Save username separately for welcome card
+      localStorage.setItem(
+        "username",
+        data.user?.name || data.user?.username || "User"
+      );
 
-        // Navigate by role
-        if (role === "admin") navigate("/admin-dashboard");
-        else if (role === "counsellor") navigate("/counsellor-dashboard");
-        else if (role === "volunteer") navigate("/volunteer-dashboard");
-        else navigate("/dashboard");
+      // Optional callback
+      if (onLogin) {
+        onLogin(data.user);
+      }
+
+      // Navigate by ACTUAL backend role
+      const actualRole = data.user?.role;
+
+      if (actualRole === "admin") {
+        navigate("/admin-dashboard");
+      } else if (actualRole === "counsellor") {
+        navigate("/counsellor-dashboard");
+      } else if (actualRole === "volunteer") {
+        navigate("/volunteer-dashboard");
       } else {
-        throw new Error("No token received");
+        navigate("/dashboard");
       }
     } catch (err) {
-      setError(err.message);
+      setError(err.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
   };
-
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#FDFBF7] dark:bg-gray-950">
@@ -73,13 +91,18 @@ const Login = ({ onLogin }) => {
           >
             Welcome Back!
           </motion.h2>
+
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.7 }}
             className="flex flex-col items-center justify-center flex-1"
           >
-            <img src={loginImg} alt="Login" className="max-h-72 object-contain drop-shadow-xl" />
+            <img
+              src={loginImg}
+              alt="Login"
+              className="max-h-72 object-contain drop-shadow-xl"
+            />
           </motion.div>
         </div>
 
@@ -110,7 +133,7 @@ const Login = ({ onLogin }) => {
               <option value="admin">Admin</option>
             </select>
 
-            {/* Inputs */}
+            {/* Username / Email */}
             {role === "student" ? (
               <input
                 name="username"
@@ -129,6 +152,7 @@ const Login = ({ onLogin }) => {
               />
             )}
 
+            {/* Password */}
             <input
               name="password"
               type="password"
@@ -137,6 +161,7 @@ const Login = ({ onLogin }) => {
               className="w-full p-3 rounded-full border border-green-900/30 dark:border-gray-600"
             />
 
+            {/* Button */}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -147,11 +172,46 @@ const Login = ({ onLogin }) => {
               {loading ? "Logging in..." : "Log In"}
             </motion.button>
 
-            {error && <p className="text-center text-sm text-red-600">{error}</p>}
+            {/* Error */}
+            {error && (
+              <p className="text-center text-sm text-red-600">
+                {error}
+              </p>
+            )}
 
+            {/* Demo Accounts */}
+            <div className="mt-2 p-4 rounded-2xl bg-green-50 dark:bg-gray-700 border border-green-200 dark:border-gray-600 text-sm text-gray-700 dark:text-gray-200">
+              <h3 className="font-semibold mb-2 text-center">
+                Demo Accounts
+              </h3>
+
+              <div className="space-y-1">
+                <p>
+                  <strong>Student:</strong> Shreya / 12345
+                </p>
+                <p>
+                  <strong>Admin:</strong> admin@gmail.com / 12345
+                </p>
+
+                <p>
+                  <strong>Counsellor:</strong> counsellor@gmail.com /
+                  12345
+                </p>
+
+                <p>
+                  <strong>Volunteer:</strong> volunteer@gmail.com /
+                  12345
+                </p>
+              </div>
+            </div>
+
+            {/* Signup */}
             <p className="text-center text-sm text-gray-700 dark:text-gray-400">
               Don’t have an account?{" "}
-              <Link to="/signup" className="text-green-700 dark:text-green-400 hover:underline">
+              <Link
+                to="/signup"
+                className="text-green-700 dark:text-green-400 hover:underline"
+              >
                 Create one
               </Link>
             </p>
