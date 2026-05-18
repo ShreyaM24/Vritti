@@ -43,7 +43,7 @@ const Login = ({ onLogin }) => {
       // Save full user object
       localStorage.setItem("user", JSON.stringify(data.user));
 
-      // Save username separately for welcome card
+      // Save username separately
       localStorage.setItem(
         "username",
         data.user?.name || data.user?.username || "User"
@@ -54,7 +54,7 @@ const Login = ({ onLogin }) => {
         onLogin(data.user);
       }
 
-      // Navigate by ACTUAL backend role
+      // Navigate based on role
       const actualRole = data.user?.role;
 
       if (actualRole === "admin") {
@@ -74,20 +74,20 @@ const Login = ({ onLogin }) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#FDFBF7] dark:bg-gray-950">
+    <div className="min-h-screen flex items-center justify-center bg-[#FDFBF7] dark:bg-gray-950 px-4 py-10">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="flex w-[90%] max-w-5xl rounded-3xl shadow-xl overflow-hidden bg-white dark:bg-gray-900"
+        className="flex flex-col lg:flex-row w-full max-w-5xl rounded-3xl shadow-xl overflow-hidden bg-white dark:bg-gray-900"
       >
-        {/* Left */}
-        <div className="relative w-1/2 bg-green-900 dark:bg-green-800 p-10 text-white flex flex-col justify-between items-center">
+        {/* Left Section */}
+        <div className="relative lg:w-1/2 bg-green-900 dark:bg-green-800 p-8 md:p-10 text-white flex flex-col justify-between items-center">
           <motion.h2
             initial={{ x: -40, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6 }}
-            className="text-4xl font-bold mt-10 text-center"
+            className="text-3xl md:text-4xl font-bold mt-4 md:mt-10 text-center"
           >
             Welcome Back!
           </motion.h2>
@@ -96,24 +96,24 @@ const Login = ({ onLogin }) => {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.7 }}
-            className="flex flex-col items-center justify-center flex-1"
+            className="flex flex-col items-center justify-center flex-1 mt-6"
           >
             <img
               src={loginImg}
               alt="Login"
-              className="max-h-72 object-contain drop-shadow-xl"
+              className="max-h-56 md:max-h-72 object-contain drop-shadow-xl"
             />
           </motion.div>
         </div>
 
-        {/* Right */}
+        {/* Right Section */}
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
-          className="w-1/2 bg-[#fdf6e3] dark:bg-gray-800 p-12"
+          className="lg:w-1/2 bg-[#fdf6e3] dark:bg-gray-800 p-6 sm:p-8 md:p-12"
         >
-          <h2 className="text-3xl font-bold mb-3 text-gray-800 dark:text-gray-100 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100 text-center">
             Login to Your Account
           </h2>
 
@@ -124,7 +124,7 @@ const Login = ({ onLogin }) => {
               value={role}
               onChange={(e) => setRole(e.target.value)}
               required
-              className="w-full mb-6 p-3 rounded-full bg-[#fffaf0] dark:bg-gray-700 border border-[#e6ddc5] dark:border-gray-600"
+              className="w-full p-3 rounded-full bg-[#fffaf0] dark:bg-gray-700 border border-[#e6ddc5] dark:border-gray-600 text-sm md:text-base"
             >
               <option value="">Select Role</option>
               <option value="student">Student</option>
@@ -140,7 +140,7 @@ const Login = ({ onLogin }) => {
                 type="text"
                 placeholder="Username"
                 required
-                className="w-full p-3 rounded-full border border-green-900/30 dark:border-gray-600"
+                className="w-full p-3 rounded-full border border-green-900/30 dark:border-gray-600 text-sm md:text-base"
               />
             ) : (
               <input
@@ -148,7 +148,7 @@ const Login = ({ onLogin }) => {
                 type="email"
                 placeholder="Email Address"
                 required
-                className="w-full p-3 rounded-full border border-green-900/30 dark:border-gray-600"
+                className="w-full p-3 rounded-full border border-green-900/30 dark:border-gray-600 text-sm md:text-base"
               />
             )}
 
@@ -158,16 +158,16 @@ const Login = ({ onLogin }) => {
               type="password"
               placeholder="Password"
               required
-              className="w-full p-3 rounded-full border border-green-900/30 dark:border-gray-600"
+              className="w-full p-3 rounded-full border border-green-900/30 dark:border-gray-600 text-sm md:text-base"
             />
 
-            {/* Button */}
+            {/* Login Button */}
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               type="submit"
               disabled={loading}
-              className="w-full bg-green-900 text-white py-3 rounded-full font-semibold shadow-md hover:bg-green-800"
+              className="w-full bg-green-900 text-white py-3 rounded-full font-semibold shadow-md hover:bg-green-800 transition"
             >
               {loading ? "Logging in..." : "Log In"}
             </motion.button>
@@ -181,32 +181,31 @@ const Login = ({ onLogin }) => {
 
             {/* Demo Accounts */}
             <div className="mt-2 p-4 rounded-2xl bg-green-50 dark:bg-gray-700 border border-green-200 dark:border-gray-600 text-sm text-gray-700 dark:text-gray-200">
-              <h3 className="font-semibold mb-2 text-center">
+              <h3 className="font-semibold mb-3 text-center text-base">
                 Demo Accounts
               </h3>
 
-              <div className="space-y-1">
+              <div className="space-y-2 break-words">
                 <p>
                   <strong>Student:</strong> Shreya / 12345
                 </p>
+
                 <p>
                   <strong>Admin:</strong> admin@gmail.com / 12345
                 </p>
 
                 <p>
-                  <strong>Counsellor:</strong> counsellor@gmail.com /
-                  12345
+                  <strong>Counsellor:</strong> counsellor@gmail.com / 12345
                 </p>
 
                 <p>
-                  <strong>Volunteer:</strong> volunteer@gmail.com /
-                  12345
+                  <strong>Volunteer:</strong> volunteer@gmail.com / 12345
                 </p>
               </div>
             </div>
 
             {/* Signup */}
-            <p className="text-center text-sm text-gray-700 dark:text-gray-400">
+            <p className="text-center text-sm text-gray-700 dark:text-gray-400 mt-2">
               Don’t have an account?{" "}
               <Link
                 to="/signup"

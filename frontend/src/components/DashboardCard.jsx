@@ -7,29 +7,94 @@ const DashboardCard = ({ title, image }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 25 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ type: "spring", stiffness: 70, damping: 15 }}
-      whileHover={{
-        scale: 1.05,
-        boxShadow: "0px 10px 25px rgba(13,148,136,0.3)",
-        backgroundColor: "#f0fdfa",
+      transition={{
+        type: "spring",
+        stiffness: 80,
+        damping: 15,
       }}
-      whileTap={{ scale: 0.95 }}
-      className="bg-white dark:bg-gray-900 shadow dark:shadow-lg rounded-2xl p-6 
-                 text-center cursor-pointer transition-colors duration-300 
-                 flex flex-col items-center justify-center min-h-[220px]"
+      whileHover={{
+        y: -4,
+        scale: 1.02,
+        boxShadow: "0px 12px 28px rgba(13,148,136,0.18)",
+      }}
+      whileTap={{ scale: 0.98 }}
+      className="
+        w-full
+
+        bg-white dark:bg-gray-900
+
+        rounded-2xl
+        shadow-md dark:shadow-xl
+
+        p-4 sm:p-5 md:p-6
+
+        flex flex-col
+        items-center
+        justify-center
+
+        text-center
+
+        transition-all duration-300
+
+        min-h-[170px]
+        sm:min-h-[190px]
+        md:min-h-[220px]
+
+        overflow-hidden
+      "
     >
-      <motion.img
-        src={image}
-        alt={t(title)}
-        className="w-20 h-20 mb-4 transition-all duration-300"
-        whileHover={{ rotate: 10, scale: 1.1 }}
-        transition={{ type: "spring", stiffness: 200, damping: 10 }}
-      />
+      {/* Icon/Image */}
+      <motion.div
+        whileHover={{
+          rotate: 6,
+          scale: 1.06,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 220,
+          damping: 12,
+        }}
+        className="flex items-center justify-center"
+      >
+        <img
+          src={image}
+          alt={t(title)}
+          className="
+            w-14 h-14
+            sm:w-16 sm:h-16
+            md:w-20 md:h-20
+
+            object-contain
+
+            mb-3 sm:mb-4
+
+            select-none
+          "
+        />
+      </motion.div>
+
+      {/* Title */}
       <motion.h3
-        className="font-semibold text-gray-800 dark:text-white text-lg transition-colors duration-300"
-        whileHover={{ color: "#0d9488" }}
+        whileHover={{
+          color: "#0d9488",
+        }}
+        className="
+          text-sm sm:text-base md:text-lg
+
+          font-semibold
+
+          text-gray-800 dark:text-white
+
+          leading-snug
+
+          break-words
+
+          max-w-full
+
+          transition-colors duration-300
+        "
       >
         {t(title)}
       </motion.h3>
