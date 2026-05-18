@@ -67,11 +67,11 @@ const DailyMoodTracker = () => {
   const energyOptions = t("dailyMoodTracker.sleepEnergySection.energyOptions", { returnObjects: true });
 
   return (
-    <div className="flex h-screen bg-[#fdf6e3] dark:bg-gray-900 transition-colors duration-300">
+    <div className="flex h-screen bg-[#fdf6e3] dark:bg-gray-900 transition-colors duration-300 overflow-x-hidden">
       <Sidebar />
-      <div className="flex flex-col flex-1 ml-64">
+      <div className="flex flex-col flex-1 lg:ml-64">
         <Topbar />
-        <div className="p-6 space-y-8 overflow-y-auto">
+        <div className="pt-20 lg:pt-6 p-6 space-y-8 overflow-y-auto">
           <h1 className="text-3xl font-bold text-green-900 dark:text-gray-100">
             {t("dailyMoodTracker.pageTitle")}
           </h1>
